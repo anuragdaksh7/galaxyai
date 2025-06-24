@@ -20,5 +20,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@ai-sdk/google": "^1.2.19",
+    "ai": "^4.3.16"
+  }
 }

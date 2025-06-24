@@ -1,0 +1,30 @@
+[
+  {
+    "id": "msgc-91C4cpjUi9MKGB18",
+    "createdAt": "2025-06-24T06:39:07.356Z",
+    "role": "user",
+    "content": "hi",
+    "parts": [
+      {
+        "type": "text",
+        "text": "hi"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "id": "msgs-gHRkaTbqAb9EZr14",
+    "createdAt": "2025-06-24T06:39:08.342Z",
+    "content": "Hi there! How can I help you today?\n",
+    "toolInvocations": [],
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "Hi there! How can I help you today?\n"
+      }
+    ]
+  }
+]
