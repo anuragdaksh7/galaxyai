@@ -5,7 +5,7 @@ type Props = {}
 
 const Navbar = (props: Props) => {
   return (
-    <div className='flex items-center justify-between p-2 shadow-[0_1px_0_#ffffff0d]'>
+    <div className='flex items-center justify-between p-2 shadow-[0_1px_0_#ffffff0d] w-full'>
       <div className='flex items-center'>
         <div className='whitespace-nowrap hover:bg-[#434243]  px-[0.625rem] rounded-lg gap-1 justify-center items-center cursor-pointer min-h-9 flex'>
           <h1 className='font-normal text-[#fffefe] text-lg'>ChatGPT</h1>

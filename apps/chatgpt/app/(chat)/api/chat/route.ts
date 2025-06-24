@@ -2,6 +2,8 @@ import { google } from "@ai-sdk/google";
 import { appendClientMessage, appendResponseMessages, createIdGenerator, streamText } from 'ai';
 import { loadChat, saveChat } from '@/tools/chat-store';
 
+
+
 export async function POST(req: Request) {
   const { message, id } = await req.json();
 
@@ -15,6 +17,7 @@ export async function POST(req: Request) {
   const result = streamText({
     model: google('gemini-1.5-flash-002'),
     messages,
+    system: 'You are a helpful assistant.',
     async onFinish({ response }) {
       await saveChat({
         id,

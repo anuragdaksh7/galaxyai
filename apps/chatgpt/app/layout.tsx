@@ -24,7 +24,9 @@ export default function RootLayout({
         className={`${openSans.variable} antialiased flex min-h-[100vh]`}
       >
         <Sidebar />
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col items-center" style={{
+          height: "100vh",
+        }}>
           <Navbar />
           {children}
         </div>
