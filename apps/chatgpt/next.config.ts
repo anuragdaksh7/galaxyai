@@ -26,15 +26,14 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL,
     NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL,
   },
-  experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
-  },
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.externals.push("@prisma/client");
+      config.externals.push('@prisma/client')
     }
-    return config;
+
+    return config
   },
+  target: "serverless"
 };
 
 export default nextConfig;
