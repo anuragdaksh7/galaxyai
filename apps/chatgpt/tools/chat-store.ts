@@ -3,7 +3,7 @@ import { existsSync, mkdirSync } from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import { prisma } from "@repo/db"
-import type { MessageRole } from "@repo/db/client"
+import type { Chat, MessageRole } from "@repo/db/client"
 
 function convertToDbMessage(aiMessage: Message): any {
   return {
@@ -23,6 +23,20 @@ function convertFromDbMessage(dbMessage: any): Message {
   };
 }
 
+
+export async function getChats(userId: string): Promise<Chat[]> {
+  const chats = await prisma.chat.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc',
+    }
+  })
+
+  return chats
+}
+
 export async function loadChat(id: string): Promise<Message[]> {
   const chat = await prisma.chat.findUnique({
     where: { cid: id },
@@ -35,21 +49,16 @@ export async function loadChat(id: string): Promise<Message[]> {
   // return JSON.parse(await readFile(getChatFile(id), 'utf8'));
 }
 
-export async function createChat(): Promise<string> {
+export async function createChat({ userId }: { userId?: string }): Promise<string> {
   const id = generateId();
   await prisma.chat.create({
     data: {
       cid: id,
       name: `Chat ${id}`,
+      userId: userId || null
     },
   });
   return id;
-}
-
-function getChatFile(id: string): string {
-  const chatDir = path.join(process.cwd(), '.chats');
-  if (!existsSync(chatDir)) mkdirSync(chatDir, { recursive: true });
-  return path.join(chatDir, `${id}.json`);
 }
 
 export async function saveChat({
@@ -58,6 +67,7 @@ export async function saveChat({
 }: {
   id: string;
   messages: Message[];
+  userId?: string
 }): Promise<void> {
   const chat = await prisma.chat.findUnique({ where: { cid: id } });
   await prisma.$transaction([

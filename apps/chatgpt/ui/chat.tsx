@@ -41,9 +41,9 @@ export default function Chat({
             className={`flex max-w-[48rem] w-[48rem] py-5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'
               }`}
           >
-            <div className={`flex gap-2 max-w-[80%] ${msg.role === 'user' ? 'px-5 py-2.5 bg-[#323232D9] rounded-[20px]' : ''}`}>
+            <pre className={`flex font-sans gap-2 max-w-[80%] whitespace-pre-wrap ${msg.role === 'user' ? 'px-5 py-2.5 bg-[#323232D9] rounded-[20px]' : ''}`}>
               {msg.content}
-            </div>
+            </pre>
           </div>
         ))}
         <div

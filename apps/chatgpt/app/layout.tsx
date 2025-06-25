@@ -3,6 +3,9 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/ui/Sidebar"
 import Navbar from "@/ui/Navbar";
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -23,13 +26,9 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} antialiased flex min-h-[100vh]`}
       >
-        <Sidebar />
-        <div className="flex-1 flex flex-col items-center" style={{
-          height: "100vh",
-        }}>
-          <Navbar />
+        <ClerkProvider>
           {children}
-        </div>
+        </ClerkProvider>
       </body>
     </html>
   );

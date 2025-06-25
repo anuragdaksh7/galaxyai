@@ -2,9 +2,8 @@ import { google } from "@ai-sdk/google";
 import { appendClientMessage, appendResponseMessages, createIdGenerator, streamText } from 'ai';
 import { loadChat, saveChat } from '@/tools/chat-store';
 
-
-
 export async function POST(req: Request) {
+
   const { message, id } = await req.json();
 
   const previousMessages = await loadChat(id);
