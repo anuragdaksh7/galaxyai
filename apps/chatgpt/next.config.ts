@@ -33,7 +33,6 @@ const nextConfig: NextConfig = {
 
     return config
   },
-  target: "serverless"
 };
 
 export default nextConfig;
