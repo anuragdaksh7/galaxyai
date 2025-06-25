@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "db:generate": "npx prisma generate",
-    "db:migrate": "npx prisma migrate dev --skip-generate",
+    "db:migrate:dev": "npx prisma migrate dev --skip-generate",
     "db:deploy": "npx prisma migrate deploy",
     "db:push": "npx prisma db push"
   },

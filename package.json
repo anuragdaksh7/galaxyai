@@ -10,10 +10,11 @@
     "db:generate": "turbo run db:generate",
     "db:migrate:dev": "turbo run db:migrate:dev",
     "db:push": "turbo run db:push",
-    "db:studio": "turbo run db:studio",
-    "prisma:generate": "prisma generate --schema=./packages/db/prisma/schema.prisma"
+    "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
+    "@emnapi/core": "^1.4.3",
+    "@tybys/wasm-util": "^0.9.0",
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
     "typescript": "5.8.2"

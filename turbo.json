@@ -4,7 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": [
-        "^prisma:generate",
+        "^db:generate",
         "^build"
       ],
       "inputs": [
@@ -20,7 +20,8 @@
       "cache": false
     },
     "db:migrate:dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "db:push": {
       "cache": false
