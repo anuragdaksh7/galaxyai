@@ -4,8 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": [
-        "^build",
-        "^db:generate"
+        "^db:generate",
+        "^build"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
@@ -42,5 +42,11 @@
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "GOOGLE_GENERATIVE_AI_API_KEY",
+    "DATABASE_URL",
+    "NODE_ENV",
+    "CLERK_SECRET_KEY"
+  ]
 }

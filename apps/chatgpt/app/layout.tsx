@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/ui/Sidebar"
-import Navbar from "@/ui/Navbar";
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
+  display: "swap",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
