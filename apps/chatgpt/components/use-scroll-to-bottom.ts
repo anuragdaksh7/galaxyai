@@ -1,8 +1,8 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { RefObject, useRef } from 'react';
 
-export function useScrollToBottom<T extends HTMLElement>(): [RefObject<T>, RefObject<T>, () => void] {
-  const containerRef = useRef<T>(null);
-  const endRef = useRef<T>(null);
+export function useScrollToBottom<T extends HTMLElement>(): [RefObject<T | null>, RefObject<T | null>, () => void] {
+  const containerRef = useRef<T | null>(null);
+  const endRef = useRef<T | null>(null);
 
   // Manually scroll to bottom function
   const scrollToBottom = () => {
