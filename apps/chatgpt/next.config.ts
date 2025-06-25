@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import dotenv from 'dotenv';
 import path from 'path';
+import { PrismaPlugin } from "@prisma/nextjs-monorepo-workaround-plugin";
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -28,7 +29,7 @@ const nextConfig: NextConfig = {
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.externals.push('@prisma/client')
+      config.plugins = [...config.plugins, new PrismaPlugin()]
     }
 
     return config

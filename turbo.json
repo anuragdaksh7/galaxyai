@@ -17,7 +17,7 @@
       ]
     },
     "db:generate": {
-      "outputs": ["generated/**"]
+      "cache": false
     },
     "db:migrate:dev": {
       "cache": false,
