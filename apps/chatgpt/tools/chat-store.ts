@@ -37,7 +37,7 @@ export async function getChats(userId: string): Promise<Chat[]> {
   return chats
 }
 
-export async function loadChat(id: string): Promise<Message[]> {
+export async function loadChat(id: string, userId: string | null): Promise<Message[]> {
   const chat = await prisma.chat.findUnique({
     where: { cid: id },
     include: { messages: { orderBy: { timestamp: 'asc' } } },

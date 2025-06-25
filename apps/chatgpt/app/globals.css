@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'highlight.js/styles/github-dark.css';
 
 :root {
   --background: #212121;
@@ -55,4 +56,58 @@ a {
 .scrollbar-custom {
   scrollbar-width: thin;
   scrollbar-color: #666766 transparent;
+}
+
+.prose,
+.prose ul ul,
+.prose ol ul,
+.prose ul ol,
+.prose ol ol {
+  margin-left: 1.25rem; /* or 1.5rem */
+  list-style: initial;
+}
+
+.prose-ol,
+.prose-ol ul ul,
+.prose-ol ol ul,
+.prose-ol ul ol,
+.prose-ol ol ol {
+  margin-left: 1.25rem;
+  list-style: decimal;
+}
+
+/* Fix Markdown-rendered tables */
+.prose table {
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: separate !important;
+  border-spacing: 0 0.5rem; /* vertical spacing between rows */
+}
+
+.prose thead {
+  background-color: transparent; /* remove default bg */
+  color: #d1d5db; /* text-gray-300 */
+  font-size: 0.75rem; /* text-xs */
+  text-transform: uppercase;
+  border-bottom: 1px solid #374151; /* border-gray-700 */
+}
+
+.prose tbody tr {
+  background-color: transparent;
+  border-top: 1px solid #1f2937; /* border-gray-800 */
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+  color: #e5e7eb; /* text-gray-200 */
+  border: none; /* remove default border */
+}
+
+.prose tr:last-child td {
+  font-weight: bold;
+  color: #fff;
+  border-top: 1px solid #374151; /* dark border for total row */
 }

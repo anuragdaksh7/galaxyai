@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { useScrollToBottom } from '@/components/use-scroll-to-bottom';
 import { Message, useChat } from '@ai-sdk/react';
 import { createIdGenerator } from 'ai';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/github-dark.css';
 
 const welcome = [
   'Where should we begin?',
@@ -35,8 +39,6 @@ export default function Chat({
     useScrollToBottom<HTMLDivElement>();
   const [randomItem, setRandomItem] = useState<string | null>(null);
 
-  console.log(messages)
-
   useEffect(() => {
     const index = Math.floor(Math.random() * welcome.length);
     setRandomItem(welcome[index]);
@@ -49,17 +51,42 @@ export default function Chat({
   return (
     <div className={`flex flex-col h-full w-full items-center relative ${messages?.length > 0 && ' gap-4'}`}>
       <div ref={messagesContainerRef} className={`flex flex-col gap-2 overflow-y-auto w-full items-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden relative${messages?.length == 0 && ' mt-[calc(30dvh+25px-56px)]'} ${messages?.length > 0 && '  flex-[1_0_0] pb-[200px] h-full mt-0'}`}>
-        {messages.map((msg) => (
-          <div
+        {messages.map((msg) => {
+
+          return <div
             key={msg.id}
             className={`flex max-w-[48rem] w-[48rem] py-5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'
               }`}
           >
-            <pre className={`flex font-sans gap-2 max-w-[80%] whitespace-pre-wrap ${msg.role === 'user' ? 'px-5 py-2.5 bg-[#323232D9] rounded-[20px]' : ''}`}>
-              {msg.content}
+            <pre className={` prose flex font-sans flex-col gap-2 max-w-[80%] whitespace-pre-wrap ${msg.role === 'user' ? 'px-5 py-2.5 bg-[#323232D9] rounded-[20px]' : ' text-justify'}`}>
+              {msg.role === 'user' ? msg.content :
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeHighlight]}
+                  components={{
+                    a: ({ href, children }) => (
+                      <a
+                        href={href}
+                        className="!text-blue-300 hover:!underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {children}
+                      </a>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="prose">{children}</ul>
+                    ),
+                    ol: ({ children }) => (
+                      <ol className="prose-ol">{children}</ol>
+                    ),
+                  }}
+                >
+                  {msg.content}
+                </ReactMarkdown>}
             </pre>
           </div>
-        ))}
+        })}
         {
           messages?.length == 0 && (
             <div className='mb-7 relative inline-flex justify-center text-center text-[28px] leading-9'>

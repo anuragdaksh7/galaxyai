@@ -1,12 +1,14 @@
 import { google } from "@ai-sdk/google";
 import { appendClientMessage, appendResponseMessages, createIdGenerator, streamText } from 'ai';
 import { loadChat, saveChat } from '@/tools/chat-store';
+import { auth } from "@clerk/nextjs/server";
 
 export async function POST(req: Request) {
+const { userId } = await auth()
 
   const { message, id } = await req.json();
 
-  const previousMessages = await loadChat(id);
+  const previousMessages = await loadChat(id, userId);
 
   const messages = appendClientMessage({
     messages: previousMessages,
