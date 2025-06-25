@@ -2,6 +2,7 @@
   "name": "galaxy",
   "private": true,
   "scripts": {
+    "prebuild": "turbo run db:generate",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
